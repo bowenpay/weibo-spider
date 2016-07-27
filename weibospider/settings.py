@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'weibospider',
-    'weibo'
+    'weibos'
 )
 
 MIDDLEWARE_CLASSES = (

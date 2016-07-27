@@ -74,9 +74,7 @@ hr {
 #start, #end {
     text-align: center;
 }
-.wechat-table th,.wechat-table td {
-    vertical-align: middle !important;
-}
-.wechat-table .td-center {
-    text-align: center;
+
+table.wechat-table  th {
+    white-space: nowrap;
 }

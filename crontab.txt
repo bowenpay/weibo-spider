@@ -1,0 +1,2 @@
+# 获取最新的微博 1次/10分钟
+*/10 * * * * cd /var/www/0fenbei/weibo-spider; python bin/weibo_script.py --timeline >> logs/stats_stat.user.log 2>&1

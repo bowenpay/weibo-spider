@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load paginator %}
+{% block main-content %}
+<div class="row">
+  <div class="col-md-12">
+    <div class="topics panel panel-default">
+      <div class="panel-heading">
+        文章列表
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped table-hover wechat-table">
+          <thead>
+            <tr>
+              <th>#ID</th>
+              <th>作者</th>
+              <th>内容</th>
+              <th>原文链接</th>
+              <th>时间</th>
+              <th>转发数</th>
+              <th>评论数</th>
+              <th>表态数</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for item in weibos %}
+            <tr>
+              <td>{{ item.id}}</td>
+              <td>
+                {{ item.get_user.screen_name }}
+              </td>
+              <td>{{ item.text }}</td>
+              <td><a target="_blank" href="{{ item.url }}"><i class="fa fa-weibo fa-lg" style="color: #e6162d;"></i></a></td>
+              <td>{{ item.created_at}}</td>
+              <td>{{ item.reposts_count }}</td>
+              <td>{{ item.comments_count }}</td>
+              <td>{{ item.attitudes_count }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="panel-footer clearfix">
+        {% paginator weibos %}
+      </div>
+    </div><!--.topics-->
+
+  </div>
+</div>
+{% endblock %}
