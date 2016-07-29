@@ -2,8 +2,9 @@
 __author__ = 'yijingping'
 
 import json
+from datetime import datetime, timedelta
 from django.db import models
-
+from util_weibo import mid_to_url
 
 class Config(models.Model):
     KIND_APP_KEY = 1
@@ -61,7 +62,30 @@ class Weibo(models.Model):
         user = json.loads(self.user)
         return user
 
+    def get_url(self):
+        mcode = mid_to_url(self.mid)
+        return 'http://weibo.com/%s/%s' % (self.uid, mcode)
+
+    def get_create_time(self):
+        return datetime.strptime(self.created_at, '%a %b %d %H:%M:%S +0800 %Y') - timedelta(hours=8)
+
+
     class Meta:
         verbose_name_plural = "微博"
 
 
+class Word(models.Model):
+    KIND_KEYWORD = 0
+    #KIND_TOPIC = 1 # 话题微博可以直接通过关注话题 来获得
+    KIND_CHOICES = (
+        (KIND_KEYWORD, '关键词'),
+        #(KIND_TOPIC, '话题'),
+    )
+    kind = models.IntegerField(default=KIND_KEYWORD, choices=KIND_CHOICES, verbose_name="类型")
+    text = models.CharField(max_length=100, verbose_name='词')
+
+    def __unicode__(self):
+        return '%s %s' % (self.kind, self.text)
+
+    class Meta:
+        verbose_name_plural = "词"

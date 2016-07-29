@@ -19,3 +19,4 @@ def get_authed_weibo_client():
     expires_in = 0
     client.set_access_token(access_token, expires_in)
     return client
+

@@ -12,10 +12,10 @@
           <thead>
             <tr>
               <th>#ID</th>
-              <th>作者</th>
+              <th>作者&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
               <th>内容</th>
               <th>原文链接</th>
-              <th>时间</th>
+              <th>发布时间&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
               <th>转发数</th>
               <th>评论数</th>
               <th>表态数</th>
@@ -29,8 +29,8 @@
                 {{ item.get_user.screen_name }}
               </td>
               <td>{{ item.text }}</td>
-              <td><a target="_blank" href="{{ item.url }}"><i class="fa fa-weibo fa-lg" style="color: #e6162d;"></i></a></td>
-              <td>{{ item.created_at}}</td>
+              <td><a target="_blank" href="{{ item.get_url }}"><i class="fa fa-weibo fa-lg" style="color: #e6162d;"></i></a></td>
+              <td>{{ item.get_create_time | date:'m-d H:i'}}</td>
               <td>{{ item.reposts_count }}</td>
               <td>{{ item.comments_count }}</td>
               <td>{{ item.attitudes_count }}</td>
